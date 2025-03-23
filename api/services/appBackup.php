@@ -205,41 +205,41 @@
             $mysql = new Mysql();
             $cobranzas = $mysql->executeReader(
                 $esAdmin ? "CALL STP_APP_BACKUP_COBRANZAS_ADMINISTRADOR_GET('$id_usuario', '$encryption_key')"
-                : "CALL STP_APP_BACKUP_COBRANZAS_COBRADOR_GET('$id_usuario', '$encryption_key', '$usuario')",
+                : "CALL STP_APP_BACKUP_COBRANZAS_COBRADOR_GET('$id_usuario', '$encryption_key', '$usuario')"
             );
             $cargos_abonos = $mysql->executeReader(
                 $esAdmin ? "CALL STP_APP_BACKUP_CARGOSABONOS_ADMINISTRADOR_GET('$id_usuario')"
-                : "CALL STP_APP_BACKUP_CARGOSABONOS_COBRADOR_GET('$id_usuario', '$usuario')",
+                : "CALL STP_APP_BACKUP_CARGOSABONOS_COBRADOR_GET('$id_usuario', '$usuario')"
             );
             $notas = $mysql->executeReader(
                 $esAdmin ? "CALL STP_APP_BACKUP_NOTAS_ADMINISTRADOR_GET('$id_usuario')"
-                : "CALL STP_APP_BACKUP_NOTAS_COBRADOR_GET('$id_usuario', '$usuario')",
+                : "CALL STP_APP_BACKUP_NOTAS_COBRADOR_GET('$id_usuario', '$usuario')"
             );
             $zonas = $mysql->executeReader(
                 $esAdmin ? "CALL STP_APP_BACKUP_ZONAS_GET('$id_usuario')"
-                : "CALL STP_APP_BACKUP_ZONAS_COBRADOR_GET('$id_usuario', '$usuario')",
+                : "CALL STP_APP_BACKUP_ZONAS_COBRADOR_GET('$id_usuario', '$usuario')"
             );
             foreach($zonas as $zona) {
                 $zona->activo = $zona->activobit > 0;
             }
             $inventarios = $mysql->executeReader(
-                "CALL STP_APP_BACKUP_INVENTARIOS_GET('$id_usuario', '$usuario')",
+                "CALL STP_APP_BACKUP_INVENTARIOS_GET('$id_usuario', '$usuario')"
             );
             if($esAdmin) {
                 $clientes = $mysql->executeReader(
-                    "CALL STP_APP_BACKUP_CLIENTES_GET('$id_usuario', '$encryption_key')",
+                    "CALL STP_APP_BACKUP_CLIENTES_GET('$id_usuario', '$encryption_key')"
                 );
                 foreach($clientes as $cliente) {
                     $cliente->activo = $cliente->activobit > 0;
                 }
                 $usuarios = $mysql->executeReader(
-                    "CALL STP_APP_BACKUP_USUARIOS_GET('$id_usuario')",
+                    "CALL STP_APP_BACKUP_USUARIOS_GET('$id_usuario')"
                 );
                 foreach($usuarios as $usuario) {
                     $usuario->activo = $usuario->estatus > 0;
                 }
                 $zonas_usuarios = $mysql->executeReader(
-                    "CALL STP_APP_BACKUP_ZONASUSUARIOS_GET('$id_usuario')",
+                    "CALL STP_APP_BACKUP_ZONASUSUARIOS_GET('$id_usuario')"
                 );
             }
             $app_backup->cobranzas = isset($cobranzas[0]->idUsuario) ? $cobranzas : array();
