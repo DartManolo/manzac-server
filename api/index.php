@@ -65,9 +65,9 @@
     }
 
     $headers = apache_request_headers();
-    if(isset($headers['Authorization'])) {
+    if(isset($headers['x-api-token'])) {
         session_start();
-        $_SESSION['Token'] = $headers['Authorization'];
+        $_SESSION['Token'] = $headers['x-api-token'];
     }
 
     try {

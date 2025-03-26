@@ -14,12 +14,9 @@
             );
             try {
                 $resultado_actualizar = $mysql->executeNonQuery(
-                    "CALL STP_ACTUALIZAR_SESION_AUX(
-                        'STP_INICIAR_SESION',
-                        '$resultado_login->id_sistema',
-                        '$resultado_login->usuario',
-                        '$resultado_login->sesion',
-                        '$resultado_login->id_firebase'
+                    "CALL STP_USUARIO_LOG_INSERT(
+                        '{$login_form->usuario}',
+                        'INICIO DE SESION'
                     )"
                 );
             } finally { }

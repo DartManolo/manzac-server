@@ -24,6 +24,11 @@ CREATE TABLE IF NOT EXISTS usuarios(
     fh_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora del registro'
 );
 
+CREATE TABLE IF NOT EXISTS usuarios_logs(
+    usuario VARCHAR(150) NOT NULL DEFAULT '-' COMMENT 'Usuario/identificador',
+    accion VARCHAR(150) NOT NULL DEFAULT '-' COMMENT 'Accion realizada por usuario',
+    fh_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora del registro'
+);
 
 CREATE TABLE IF NOT EXISTS configuracion(
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'Id de registro',
@@ -32,6 +37,76 @@ CREATE TABLE IF NOT EXISTS configuracion(
     porcentaje_moratorio FLOAT NOT NULL DEFAULT 0 COMMENT 'Valor del porcentaje del interes moratorio'
 );
 
+CREATE TABLE IF NOT EXISTS reportes_salidas(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'Id de registro',
+    id_tarja VARCHAR(120) NOT NULL DEFAULT '-' COMMENT 'Id de registro de tarja',
+    tipo VARCHAR(120) NOT NULL DEFAULT 'SALIDA' COMMENT 'Tipo de servicio',
+    fecha VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Fecha del documento',
+    referencialm VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Referencia LM',
+    imo VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'IMO',
+    hora_inicio VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Hora Inicio',
+    hora_fin VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Hora Fin',
+    cliente VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Nombre cliente',
+    mercancia VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Mercancia',
+    agente_aduanal VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Agentee aduanal',
+    ejecutivo VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Ejecutivo',
+    contenedor_bl VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Contenedor y/o BL',
+    pedimento_booking VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Pedimento / Booking',
+    sello VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Sello',
+    buque VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Buque',
+    referencia_cliente VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Referencia cliente',
+    bultos VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Bultos',
+    peso FLOAT NOT NULL DEFAULT 0 COMMENT 'Peso',
+    terminal VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Terminal',
+    transporte VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Transporte',
+    operador VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Operador',
+    placas VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Placas',
+    licencia VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Licencia',
+    observaciones VARCHAR(1000) NOT NULL DEFAULT '-' COMMENT 'Observaciones',
+    usuario VARCHAR(150) NOT NULL DEFAULT '-' COMMENT 'Usuario que registra',
+    fh_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora del registro'
+);
+
+CREATE TABLE IF NOT EXISTS reportes_entradas(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'Id de registro',
+    id_tarja VARCHAR(120) NOT NULL DEFAULT '-' COMMENT 'Id de registro de tarja',
+    tipo VARCHAR(120) NOT NULL DEFAULT 'ENTRADA' COMMENT 'Tipo de servicio',
+    fecha VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Fecha del documento',
+    referencialm VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Referencia LM',
+    imo VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'IMO',
+    hora_inicio VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Hora Inicio',
+    hora_fin VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Hora Fin',
+    cliente VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Nombre cliente',
+    mercancia VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Mercancia',
+    agente_aduanal VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Agentee aduanal',
+    ejecutivo VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Ejecutivo',
+    contenedor_bl VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Contenedor y/o BL',
+    pedimento_booking VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Pedimento / Booking',
+    sello VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Sello',
+    buque VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Buque',
+    referencia_cliente VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Referencia cliente',
+    bultos VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Bultos',
+    peso FLOAT NOT NULL DEFAULT 0 COMMENT 'Peso',
+    terminal VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Terminal',
+    fecha_despacho VARCHAR(40) NOT NULL DEFAULT '-' COMMENT 'Fecha despacho',
+    dias_libres FLOAT NOT NULL DEFAULT 0 COMMENT 'Dias libres',
+    fecha_vencimiento VARCHAR(40) NOT NULL DEFAULT '-' COMMENT 'Fecha vencimiento',
+    movimiento VARCHAR(255) NOT NULL DEFAULT '-' COMMENT 'Movimiento',
+    observaciones VARCHAR(1000) NOT NULL DEFAULT '-' COMMENT 'Observaciones',
+    usuario VARCHAR(150) NOT NULL DEFAULT '-' COMMENT 'Usuario que registra',
+    fh_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora del registro'
+);
+
+CREATE TABLE IF NOT EXISTS reportes_imagenes(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'Id de registro',
+    id_tarja VARCHAR(120) NOT NULL DEFAULT '-' COMMENT 'Id de registro de tarja',
+    id_imagen VARCHAR(120) NOT NULL DEFAULT '-' COMMENT 'Id de registro de imagen',
+    tipo VARCHAR(120) NOT NULL DEFAULT '-' COMMENT 'Tipo de servicio',
+    extension VARCHAR(15) NOT NULL DEFAULT '-' COMMENT 'Extension de la imagen',
+    folder VARCHAR(120) NOT NULL DEFAULT '-' COMMENT 'Folde ruta de almacenamiento',
+    usuario VARCHAR(150) NOT NULL DEFAULT '-' COMMENT 'Usuario que registra',
+    fh_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora del registro'
+);
 
 CREATE TABLE IF NOT EXISTS app_usuarios_acciones(
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'Id de registro',
@@ -206,4 +281,6 @@ INSERT INTO usuarios (
     'Administrador',
     'ADMINISTRADOR'
 );
+
+827ccb0eea8a706c4c34a16891f84e7b
 */

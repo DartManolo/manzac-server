@@ -9,47 +9,10 @@ BEGIN
     SET _VERIFY = (
         SELECT 
             COUNT(*) AS VERIFY
-        FROM appchop.autorization WHERE 
+        FROM manzac.autorization WHERE 
             SHA2(token, 256) = SHA2(_TOKEN, 256)
     );
     SELECT _VERIFY AS TOKEN;
-END $$
-DELIMITER ;
-
-
-
-/* ------------------------------------------------------------------------------------*/
-DROP PROCEDURE IF EXISTS STP_VERIFICAR_USUARIO;
-DELIMITER $$
-CREATE PROCEDURE STP_VERIFICAR_USUARIO(
-    IN _USUARIO VARCHAR(150)
-)
-BEGIN
-    DECLARE _VERIFY INT DEFAULT 0;
-    SET _VERIFY = (
-        SELECT 
-            COUNT(*) AS VERIFY
-        FROM appchop.usuarios WHERE 
-            usuario = _USUARIO
-    );
-    SELECT _VERIFY AS EXISTE;
-END $$
-DELIMITER ;
-
-
-
-/* ------------------------------------------------------------------------------------*/
-DROP PROCEDURE IF EXISTS STP_RECUPERACION_USUARIO_PASSWORD;
-DELIMITER $$
-CREATE PROCEDURE STP_RECUPERACION_USUARIO_PASSWORD(
-    IN _USUARIO VARCHAR(150), IN _PASSWORD VARCHAR(150), IN _STATUS VARCHAR(15)
-)
-BEGIN
-    UPDATE appchop.usuarios SET
-        password = MD5(_PASSWORD),
-        status = _STATUS
-    WHERE 
-        usuario = _USUARIO;
 END $$
 DELIMITER ;
 
@@ -65,7 +28,7 @@ BEGIN
     SET _ID = (
         SELECT
             US1.id 
-        FROM appchop.usuarios AS US1
+        FROM manzac.usuarios AS US1
         WHERE US1.usuario = _USUARIO 
             AND US1.password = MD5(_PASSWORD)
     );
@@ -81,23 +44,75 @@ BEGIN
         US1.perfil,
         US1.sesion,
         US1.acepta,
-        AU1.token,
-        IFNULL(
-            (
-                SELECT 
-                    UA1.accion 
-                FROM appchop.app_usuarios_acciones UA1
-                    WHERE UA1.id_sistema = US1.id_sistema
-                        AND UA1.usuario = _USUARIO
-                LIMIT 1
-            ),
-            '-'
-        ) AS accion
-    FROM appchop.usuarios AS US1
-        LEFT OUTER JOIN appchop.autorization AU1 ON AU1.id = US1.id_autorization
+        AU1.token 
+    FROM manzac.usuarios AS US1
+        LEFT OUTER JOIN manzac.autorization AU1 ON AU1.id = US1.id_autorization
     WHERE US1.id = _ID;
 END $$
 DELIMITER ;
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_RECUPERACION_USUARIO_PASSWORD;
+DELIMITER $$
+CREATE PROCEDURE STP_RECUPERACION_USUARIO_PASSWORD(
+    IN _USUARIO VARCHAR(150), IN _PASSWORD VARCHAR(150), IN _STATUS VARCHAR(15)
+)
+BEGIN
+    UPDATE manzac.usuarios SET
+        password = MD5(_PASSWORD),
+        status = _STATUS
+    WHERE 
+        usuario = _USUARIO;
+END $$
+DELIMITER ;
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_USUARIO_LOG_INSERT;
+DELIMITER $$
+CREATE PROCEDURE STP_USUARIO_LOG_INSERT(
+    IN _USUARIO VARCHAR(150), IN _ACCION VARCHAR(150)
+)
+BEGIN
+    INSERT INTO manzac.usuarios_logs (
+        usuario, 
+        accion
+    ) VALUES (
+        _USUARIO, 
+        _ACCION
+    );
+END $$
+DELIMITER ;
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_VERIFICAR_USUARIO;
+DELIMITER $$
+CREATE PROCEDURE STP_VERIFICAR_USUARIO(
+    IN _USUARIO VARCHAR(150)
+)
+BEGIN
+    DECLARE _VERIFY INT DEFAULT 0;
+    SET _VERIFY = (
+        SELECT 
+            COUNT(*) AS VERIFY
+        FROM manzac.usuarios WHERE 
+            usuario = _USUARIO
+    );
+    SELECT _VERIFY AS EXISTE;
+END $$
+DELIMITER ;
+
+
+/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+
+
 
 /* ------------------------------------------------------------------------------------*/
 DROP PROCEDURE IF EXISTS STP_ACTUALIZAR_SESION;
@@ -109,7 +124,7 @@ CREATE PROCEDURE STP_ACTUALIZAR_SESION(
     IN _FIREBASE VARCHAR(350)
 )
 BEGIN
-    UPDATE appchop.usuarios SET 
+    UPDATE manzac.usuarios SET 
         sesion = _SESSION, 
         id_firebase = _FIREBASE 
     WHERE id_sistema = _IDSISTEMA
@@ -125,7 +140,7 @@ CREATE PROCEDURE STP_ACEPTA_ACTUALIZAR(
     IN _IDSISTEMA VARCHAR(120), IN _ACEPTA BIT
 )
 BEGIN
-    UPDATE appchop.usuarios SET 
+    UPDATE manzac.usuarios SET 
         acepta = _ACEPTA
     WHERE id_sistema = _IDSISTEMA;
 END $$
@@ -141,7 +156,7 @@ CREATE PROCEDURE STP_VERIFICAR_ESTATUS_USUARIO(
 BEGIN
     SELECT 
         status 
-    FROM appchop.usuarios 
+    FROM manzac.usuarios 
     WHERE id_sistema = _IDSISTEMA 
         AND usuario = _USUARIO;
 END $$
@@ -158,7 +173,7 @@ CREATE PROCEDURE STP_VERIFICAR_PERFIL_USUARIO(
 BEGIN
     SELECT 
         perfil 
-    FROM appchop.usuarios 
+    FROM manzac.usuarios 
     WHERE id_sistema = _IDSISTEMA 
         AND usuario = _USUARIO;
 END $$
@@ -176,7 +191,7 @@ BEGIN
     SET _VERIFY = (
         SELECT 
             COUNT(*) AS VERIFY
-        FROM appchop.usuarios WHERE 
+        FROM manzac.usuarios WHERE 
             id_sistema = _IDSISTEMA 
             AND usuario = _USUARIO 
             AND perfil = 'COBRADOR'
@@ -198,7 +213,7 @@ BEGIN
     SET _IDAUTORIZACION = (
         SELECT 
             id_autorization 
-        FROM appchop.usuarios WHERE
+        FROM manzac.usuarios WHERE
             id_sistema = _IDSISTEMA
             AND perfil = 'ADMINISTRADOR' 
         LIMIT 1
@@ -239,7 +254,7 @@ CREATE PROCEDURE STP_ACTUALIZAR_PASSWORD_COBRADOR(
     IN _PASSWORD VARCHAR(150)
 )
 BEGIN
-    UPDATE appchop.usuarios SET 
+    UPDATE manzac.usuarios SET 
         password = MD5(_PASSWORD) 
     WHERE id_sistema = _IDSISTEMA
         AND usuario = _USUARIO;
@@ -262,7 +277,7 @@ BEGIN
         US1.nombres,
         US1.apellidos,
         US1.id_firebase
-    FROM appchop.usuarios AS US1
+    FROM manzac.usuarios AS US1
         WHERE US1.id_sistema = _IDSISTEMA
             AND US1.usuario = _USUARIO;
 END $$
@@ -278,7 +293,7 @@ CREATE PROCEDURE STP_ACTUALIZAR_ESTATUS_COBRADOR(
     IN _STATUS VARCHAR(15)
 )
 BEGIN
-    UPDATE appchop.usuarios SET 
+    UPDATE manzac.usuarios SET 
         status = _STATUS 
     WHERE id_sistema = _IDSISTEMA
         AND usuario = _USUARIO;
@@ -304,7 +319,7 @@ BEGIN
         ) AS estatus,
         nombres,
         apellidos
-    FROM appchop.usuarios
+    FROM manzac.usuarios
         WHERE id_sistema = _IDSISTEMA
             AND perfil = 'COBRADOR';
 END $$
@@ -321,7 +336,7 @@ CREATE PROCEDURE STP_APP_BACKUP_ACCION_GET(
 BEGIN
     SELECT
         IFNULL(accion, '-') AS accion
-    FROM appchop.app_usuarios_acciones
+    FROM manzac.app_usuarios_acciones
         WHERE id_sistema = _IDSISTEMA
             AND usuario = _USUARIO;
 END $$
@@ -336,7 +351,7 @@ CREATE PROCEDURE STP_APP_BACKUP_ACCION_INSERT(
     IN _ACCION VARCHAR(120)
 )
 BEGIN
-    INSERT INTO appchop.app_usuarios_acciones (
+    INSERT INTO manzac.app_usuarios_acciones (
         id_sistema, 
         usuario, 
         accion
@@ -357,7 +372,7 @@ CREATE PROCEDURE STP_APP_BACKUP_ACCION_DELETE(
     IN _IDSISTEMA VARCHAR(120), IN _USUARIO VARCHAR(150)
 )
 BEGIN
-    DELETE FROM appchop.app_usuarios_acciones
+    DELETE FROM manzac.app_usuarios_acciones
         WHERE id_sistema = _IDSISTEMA
             AND usuario = _USUARIO;
 END $$
@@ -377,7 +392,7 @@ BEGIN
         US1.id_sistema AS idUsuario,
         US1.porcentaje_bonificacion AS porcentajeBonificacion,
         US1.porcentaje_moratorio AS porcentajeMoratorio 
-    FROM appchop.configuracion AS US1
+    FROM manzac.configuracion AS US1
         WHERE US1.id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -395,7 +410,7 @@ BEGIN
         id_backup AS idBackup,
         usuario,
         fecha_creacion AS fechaCreacion 
-    FROM appchop.app_log_backups
+    FROM manzac.app_log_backups
         WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -413,11 +428,11 @@ BEGIN
     SET _VERIFY = (
         SELECT 
             COUNT(*) AS VERIFY
-        FROM appchop.app_log_backups 
+        FROM manzac.app_log_backups 
             WHERE id_sistema = _IDSISTEMA
     );
     IF _VERIFY = 0 THEN
-        INSERT INTO appchop.app_log_backups (
+        INSERT INTO manzac.app_log_backups (
             id_sistema,
             id_backup,
             usuario,
@@ -429,7 +444,7 @@ BEGIN
             _FECHACREACION
         );
     ELSE
-        UPDATE appchop.app_log_backups SET
+        UPDATE manzac.app_log_backups SET
             id_backup = _IDBACKUP,
             usuario = _USUARIO,
             fecha_creacion = _FECHACREACION,
@@ -454,7 +469,7 @@ BEGIN
         label_zona AS labelZona,
         fecha_creacion AS fechaCreacion,
         activo AS activobit
-    FROM appchop.app_zonas
+    FROM manzac.app_zonas
         WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -469,7 +484,7 @@ CREATE PROCEDURE STP_APP_BACKUP_ZONAS_DELETE(
 )
 BEGIN
     DELETE FROM 
-        appchop.app_zonas
+        manzac.app_zonas
     WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -485,7 +500,7 @@ CREATE PROCEDURE STP_APP_BACKUP_ZONAS_INSERT(
     IN _ACTIVO BIT
 )
 BEGIN
-    INSERT INTO appchop.app_zonas (
+    INSERT INTO manzac.app_zonas (
         tabla, 
         id_sistema, 
         id_zona, 
@@ -520,11 +535,11 @@ BEGIN
         label_zona AS labelZona,
         fecha_creacion AS fechaCreacion,
         activo AS activobit
-    FROM appchop.app_zonas 
+    FROM manzac.app_zonas 
         WHERE value_zona = (
             SELECT 
                 id_zona 
-            FROM appchop.app_zonas_usuarios 
+            FROM manzac.app_zonas_usuarios 
                 WHERE usuario = _USUARIO 
                     AND id_sistema = _IDSISTEMA
             LIMIT 1
@@ -544,7 +559,7 @@ BEGIN
         id_sistema AS idUsuario,
         id_zona AS idZona,
         usuario 
-    FROM appchop.app_zonas_usuarios
+    FROM manzac.app_zonas_usuarios
         WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -558,7 +573,7 @@ CREATE PROCEDURE STP_APP_BACKUP_ZONASUSUARIOS_DELETE(
 )
 BEGIN
     DELETE FROM 
-        appchop.app_zonas_usuarios
+        manzac.app_zonas_usuarios
     WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -573,7 +588,7 @@ CREATE PROCEDURE STP_APP_BACKUP_ZONASUSUARIOS_INSERT(
     IN _IDZONA VARCHAR(120), IN _USUARIO VARCHAR(150)
 )
 BEGIN
-    INSERT INTO appchop.app_zonas_usuarios (
+    INSERT INTO manzac.app_zonas_usuarios (
         tabla, 
         id_sistema, 
         id_zona, 
@@ -597,7 +612,7 @@ CREATE PROCEDURE STP_APP_BACKUP_ZONASUSUARIOS_VERIFY(
 BEGIN
     SELECT 
         COUNT(*) AS VERIFY
-    FROM appchop.app_zonas_usuarios
+    FROM manzac.app_zonas_usuarios
         WHERE id_sistema = _IDSISTEMA
             AND usuario = _USUARIO;
 END $$
@@ -625,12 +640,12 @@ BEGIN
     SET _VERIFY = (
         SELECT 
             COUNT(*) AS VERIFY
-        FROM appchop.app_cobranzas WHERE 
+        FROM manzac.app_cobranzas WHERE 
             id_sistema = _IDSISTEMA 
             AND id_cobranza = _IDCOBRANZA
     );
     IF _VERIFY = 0 THEN
-        INSERT INTO appchop.app_cobranzas (
+        INSERT INTO manzac.app_cobranzas (
             tabla, 
             id_sistema, 
             id_cobranza, 
@@ -693,13 +708,13 @@ BEGIN
         END IF;
         SET _BLOQUEO = (
             SELECT COUNT(*) AS BLOQUEO 
-            FROM appchop.app_cobranzas
+            FROM manzac.app_cobranzas
                 WHERE id_sistema = _IDSISTEMA 
                 AND id_cobranza = _IDCOBRANZA
                 AND bloqueado = _ESBLOQUEO
         );
         IF _BLOQUEO = 0 THEN
-            UPDATE appchop.app_cobranzas SET            
+            UPDATE manzac.app_cobranzas SET            
                 tipo_cobranza = _TIPOCOBRANZA,
                 zona = _ZONA,
                 nombre = AES_ENCRYPT(CONVERT(_NOMBRE USING UTF8), _ENCRYPTKEY),
@@ -742,7 +757,7 @@ CREATE PROCEDURE STP_APP_BACKUP_COBRANZAS_UNLOCK(
     IN _IDSISTEMA VARCHAR(120), IN _IDCOBRANZA VARCHAR(120), IN _BLOQUEADO VARCHAR(20)
 )
 BEGIN
-    UPDATE appchop.app_cobranzas SET            
+    UPDATE manzac.app_cobranzas SET            
         bloqueado = _BLOQUEADO
     WHERE 
         id_sistema = _IDSISTEMA 
@@ -785,7 +800,7 @@ BEGIN
         bloqueado AS bloqueado,
         id_cobrador AS idCobrador,
         estatus_manual AS estatusManual
-    FROM appchop.app_cobranzas
+    FROM manzac.app_cobranzas
         WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -826,8 +841,8 @@ BEGIN
         COB1.bloqueado AS bloqueado,
         _USUARIO AS idCobrador,
         COB1.estatus_manual AS estatusManual
-    FROM appchop.app_cobranzas COB1
-    LEFT OUTER JOIN appchop.app_zonas_usuarios ZU1 ON COB1.zona = ZU1.id_zona
+    FROM manzac.app_cobranzas COB1
+    LEFT OUTER JOIN manzac.app_zonas_usuarios ZU1 ON COB1.zona = ZU1.id_zona
         WHERE COB1.id_sistema = _IDSISTEMA
 			AND ZU1.usuario = _USUARIO;
 END $$
@@ -846,19 +861,19 @@ BEGIN
     SET _VERIFY = (
         SELECT 
             COUNT(*) AS VERIFY
-        FROM appchop.app_cargos_abonos WHERE 
+        FROM manzac.app_cargos_abonos WHERE 
             id_sistema = _IDSISTEMA 
             AND id_cobranza = _IDCOBRANZA 
             AND id_movimiento = _IDMOVIMIENTO
     );
     IF _VERIFY > 0 THEN
-        DELETE FROM appchop.app_cargos_abonos 
+        DELETE FROM manzac.app_cargos_abonos 
             WHERE id_sistema = _IDSISTEMA 
                 AND id_cobranza = _IDCOBRANZA 
                 AND id_movimiento = _IDMOVIMIENTO;
     ELSE
         SET _VERIFY = 1;
-        SELECT _VERIFY FROM appchop.app_cargos_abonos;
+        SELECT _VERIFY FROM manzac.app_cargos_abonos;
     END IF;
 END $$
 DELIMITER ;
@@ -878,13 +893,13 @@ BEGIN
     SET _VERIFY = (
         SELECT 
             COUNT(*) AS VERIFY
-        FROM appchop.app_cargos_abonos WHERE 
+        FROM manzac.app_cargos_abonos WHERE 
             id_sistema = _IDSISTEMA 
             AND id_cobranza = _IDCOBRANZA
             AND id_movimiento = _IDMOVIMIENTO
     );
     IF _VERIFY = 0 THEN
-        INSERT INTO appchop.app_cargos_abonos (
+        INSERT INTO manzac.app_cargos_abonos (
             tabla,
             id_sistema, 
             id_cobranza, 
@@ -908,7 +923,7 @@ BEGIN
             _GENERA
         );
     ELSE
-        SELECT _VERIFY FROM appchop.app_cargos_abonos;
+        SELECT _VERIFY FROM manzac.app_cargos_abonos;
     END IF;
 END $$
 DELIMITER ;
@@ -932,7 +947,7 @@ BEGIN
         CA1.usuario_registro AS usuarioRegistro,
         CA1.fecha_registro AS fechaRegistro,
         CA1.genera
-    FROM appchop.app_cargos_abonos CA1
+    FROM manzac.app_cargos_abonos CA1
         WHERE CA1.id_sistema =  _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -956,9 +971,9 @@ BEGIN
         CA1.usuario_registro AS usuarioRegistro,
         CA1.fecha_registro AS fechaRegistro,
         CA1.genera
-    FROM appchop.app_cargos_abonos CA1
-        LEFT OUTER JOIN appchop.app_cobranzas C1 ON CA1.id_cobranza = C1.id_cobranza
-        LEFT OUTER JOIN appchop.app_zonas_usuarios ZU1 ON C1.zona = ZU1.id_zona
+    FROM manzac.app_cargos_abonos CA1
+        LEFT OUTER JOIN manzac.app_cobranzas C1 ON CA1.id_cobranza = C1.id_cobranza
+        LEFT OUTER JOIN manzac.app_zonas_usuarios ZU1 ON C1.zona = ZU1.id_zona
     WHERE CA1.id_sistema =  _IDSISTEMA
         AND ZU1.usuario = _USUARIO;
 END $$
@@ -982,7 +997,7 @@ BEGIN
         usuario_crea AS usuarioCrea,
         usuario_visto AS usuarioVisto,
         fecha_crea AS fechaCrea
-    FROM appchop.app_notas 
+    FROM manzac.app_notas 
         WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -1005,9 +1020,9 @@ BEGIN
         N1.usuario_crea AS usuarioCrea,
         N1.usuario_visto AS usuarioVisto,
         N1.fecha_crea AS fechaCrea
-    FROM appchop.app_notas N1
-        LEFT OUTER JOIN appchop.app_cobranzas C1 ON N1.id_cobranza = C1.id_cobranza
-        LEFT OUTER JOIN appchop.app_zonas_usuarios ZU1 ON C1.zona = ZU1.id_zona
+    FROM manzac.app_notas N1
+        LEFT OUTER JOIN manzac.app_cobranzas C1 ON N1.id_cobranza = C1.id_cobranza
+        LEFT OUTER JOIN manzac.app_zonas_usuarios ZU1 ON C1.zona = ZU1.id_zona
     WHERE N1.id_sistema = _IDSISTEMA
         AND ZU1.usuario = _USUARIO;
 END $$
@@ -1028,12 +1043,12 @@ BEGIN
     SET _VERIFY = (
         SELECT 
             COUNT(*) AS VERIFY
-        FROM appchop.app_notas WHERE 
+        FROM manzac.app_notas WHERE 
             id_sistema = _IDSISTEMA 
             AND id_nota = _IDNOTA
     );
     IF _VERIFY = 0 THEN
-        INSERT INTO appchop.app_notas (
+        INSERT INTO manzac.app_notas (
             tabla, 
             id_sistema, 
             id_nota, 
@@ -1054,13 +1069,13 @@ BEGIN
         );
     ELSE
         IF _USUARIOVISTO = "" THEN
-            UPDATE appchop.app_notas SET
+            UPDATE manzac.app_notas SET
                 nota = CONVERT(_NOTA USING UTF8)
             WHERE
                 id_sistema = _IDSISTEMA 
                 AND id_nota = _IDNOTA;
         ELSE
-            UPDATE appchop.app_notas SET
+            UPDATE manzac.app_notas SET
                 nota = CONVERT(_NOTA USING UTF8),
                 usuario_visto = _USUARIOVISTO
             WHERE
@@ -1087,7 +1102,7 @@ BEGIN
         CAST(AES_DECRYPT(telefono, _ENCRYPTKEY) AS CHAR) AS telefono,
         fecha_creacion AS fechaCreacion,
         activo AS activobit
-    FROM appchop.app_clientes
+    FROM manzac.app_clientes
         WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -1101,7 +1116,7 @@ CREATE PROCEDURE STP_APP_BACKUP_CLIENTES_DELETE(
 )
 BEGIN
     DELETE FROM 
-        appchop.app_clientes
+        manzac.app_clientes
     WHERE id_sistema = _IDSISTEMA;
 END $$
 DELIMITER ;
@@ -1117,7 +1132,7 @@ CREATE PROCEDURE STP_APP_BACKUP_CLIENTES_INSERT(
     IN _ACTIVO BIT, IN _ENCRYPTKEY VARCHAR(30)
 )
 BEGIN
-    INSERT INTO appchop.app_clientes (
+    INSERT INTO manzac.app_clientes (
         tabla, 
         id_sistema, 
         id_cliente, 
@@ -1147,7 +1162,7 @@ CREATE PROCEDURE STP_APP_BACKUP_INVENTARIOS_DELETE(
 )
 BEGIN
     DELETE FROM 
-        appchop.app_inventarios
+        manzac.app_inventarios
     WHERE id_sistema = _IDSISTEMA
         AND usuario = _USUARIO;
 END $$
@@ -1165,7 +1180,7 @@ CREATE PROCEDURE STP_APP_BACKUP_INVENTARIOS_INSERT(
     IN _MINIMO FLOAT, IN _FECHACAMBIO VARCHAR(10), IN _USUARIO VARCHAR(120) 
 )
 BEGIN
-    INSERT INTO appchop.app_inventarios (
+    INSERT INTO manzac.app_inventarios (
         tabla,
         id_sistema,
         id_articulo,
@@ -1222,7 +1237,7 @@ BEGIN
         minimo AS minimo,
         fecha_cambio AS fechaCambio,
         usuario
-    FROM appchop.app_inventarios
+    FROM manzac.app_inventarios
         WHERE id_sistema = _IDSISTEMA
         AND usuario = _USUARIO;
 END $$
@@ -1240,7 +1255,7 @@ CREATE PROCEDURE STP_ACTUALIZAR_SESION_AUX(
     IN _FIREBASE VARCHAR(400)
 )
 BEGIN
-    INSERT INTO appchop.app_aux (
+    INSERT INTO manzac.app_aux (
         funcion,
         value1, 
         value2, 
