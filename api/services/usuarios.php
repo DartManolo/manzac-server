@@ -1,7 +1,7 @@
 <?php
     Class Usuarios {
         public static function altaUsuario($params) {
-
+            
         }
 
         public static function validarUsuario($params) {
@@ -58,23 +58,6 @@
                 true
             );
             return $verificar->status;
-        }
-
-        public static function eliminarUsuarioAccion($params) {
-            Auth::verify();
-            if(!isset($params[0]) || !isset($params[1]) || count($params) == 0) {
-                http_response_code(406);
-                die("Parámetros de usuario incorrectos");
-            }
-            $id_usuario = $params[0];
-            $usuario = $params[1];
-            $mysql = new Mysql();
-            $eliminar_accion = $mysql->executeNonQuery(
-                "CALL STP_APP_BACKUP_ACCION_DELETE(
-                    '$id_usuario', '$usuario'
-                )"
-            );
-            return json_encode($eliminar_accion == 1);
         }
     }
 ?>

@@ -108,6 +108,11 @@ CREATE TABLE IF NOT EXISTS reportes_imagenes(
     fh_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora del registro'
 );
 
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
 CREATE TABLE IF NOT EXISTS app_usuarios_acciones(
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT 'Id de registro',
     id_sistema VARCHAR(120) NOT NULL DEFAULT '-' COMMENT 'Id de registro de sistema',
@@ -252,7 +257,7 @@ INSERT INTO usuarios (
     apellidos,
     perfil
 ) VALUES (
-    '6396ab2d-bc14-436c-a3d1-567cb828c1b8',
+    '2ddc9144-d3e9-46d1-beb8-b6128f241937',
     'victorg@gmail.com',
     MD5('12345'),
     'ACTIVO',
@@ -272,7 +277,7 @@ INSERT INTO usuarios (
     apellidos,
     perfil
 ) VALUES (
-    '6396ab2d-bc14-436c-a3d1-567cb828c1b8',
+    'd84e5482-3817-491b-b825-211b9db70d60',
     'manueltrujillogomez89@gmail.com',
     MD5('12345'),
     'ACTIVO',
