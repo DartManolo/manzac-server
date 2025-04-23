@@ -7,7 +7,7 @@
         }
 
         public function conection() {
-            $mysql_params = explode("~", getenv('MYSQLCONNML'));
+            $mysql_params = explode("~", getenv('MYSQLCONN'));
             $this->conn = mysqli_init();
             $this->conn->options(MYSQLI_OPT_CONNECT_TIMEOUT, 300);
             $this->conn->options(MYSQLI_SET_CHARSET_NAME, "utf8");

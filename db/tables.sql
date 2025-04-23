@@ -287,5 +287,7 @@ INSERT INTO usuarios (
     'ADMINISTRADOR'
 );
 
+SET SQL_SAFE_UPDATES = 0;
+
 827ccb0eea8a706c4c34a16891f84e7b
 */

@@ -105,6 +105,146 @@ END $$
 DELIMITER ;
 
 
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_VERIFICAR_STATUS_USUARIO;
+DELIMITER $$
+CREATE PROCEDURE STP_VERIFICAR_STATUS_USUARIO(
+    IN _USUARIO VARCHAR(150)
+)
+BEGIN
+    DECLARE _VERIFY INT DEFAULT 0;
+    SET _VERIFY = (
+        SELECT 
+            COUNT(*) AS VERIFY 
+        FROM manzac.usuarios WHERE 
+            usuario = _USUARIO 
+            AND status = 'ACTIVO'
+    );
+    SELECT _VERIFY AS ACTIVO;
+END $$
+DELIMITER ;
+
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_ALTA_USUARIO;
+DELIMITER $$
+CREATE PROCEDURE STP_ALTA_USUARIO(
+    IN _TOKEN VARCHAR(80), IN _IDSISTEMA VARCHAR(150), IN _USUARIO VARCHAR(150), IN _PASSWORD VARCHAR(150),
+    IN _ESTATUS VARCHAR(15), IN _NOMBRES VARCHAR(150), IN _APELLIDOS VARCHAR(250), IN _PERFIL VARCHAR(150)
+)
+BEGIN
+    DECLARE _IDAUTH INT DEFAULT 0;
+    INSERT INTO manzac.autorization (
+        token
+    ) VALUES (
+        MD5(_TOKEN)
+    );
+    SET _IDAUTH = (
+        SELECT 
+            id 
+        FROM manzac.autorization WHERE 
+            token = MD5(_TOKEN)
+    );
+    INSERT INTO manzac.usuarios (
+        id_sistema,
+        usuario,
+        password,
+        status,
+        id_autorization,
+        nombres,
+        apellidos,
+        perfil
+    ) VALUES (
+        _IDSISTEMA,
+        _USUARIO,
+        MD5(_PASSWORD),
+        _ESTATUS,
+        _IDAUTH,
+        _NOMBRES,
+        _APELLIDOS,
+        _PERFIL
+    );
+END $$
+DELIMITER ;
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_USUARIO_EXISTE;
+DELIMITER $$
+CREATE PROCEDURE STP_USUARIO_EXISTE(
+    IN _USUARIO VARCHAR(150)
+)
+BEGIN
+    DECLARE _VERIFY INT DEFAULT 0;
+    SET _VERIFY = (
+        SELECT 
+            COUNT(*) AS VERIFY 
+        FROM manzac.usuarios WHERE 
+            usuario = _USUARIO 
+    );
+    SELECT _VERIFY AS ACTIVO;
+END $$
+DELIMITER ;
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_OBTENER_USUARIOS;
+DELIMITER $$
+CREATE PROCEDURE STP_OBTENER_USUARIOS()
+BEGIN
+    SELECT
+        US1.id,
+        US1.id_sistema AS idSistema,
+        US1.usuario AS usuario,
+        US1.status AS status,
+        US1.nombres AS nombres,
+        US1.apellidos AS apellidos,
+        US1.perfil AS perfil 
+    FROM manzac.usuarios AS US1
+END $$
+DELIMITER ;
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_OBTENER_USUARIO;
+DELIMITER $$
+CREATE PROCEDURE STP_OBTENER_USUARIO(
+    IN _USUARIO VARCHAR(150)
+)
+BEGIN
+    SELECT
+        US1.id,
+        US1.id_sistema AS idSistema,
+        US1.usuario AS usuario,
+        US1.status AS status,
+        US1.nombres AS nombres,
+        US1.apellidos AS apellidos,
+        US1.perfil AS perfil 
+    FROM manzac.usuarios AS US1
+        WHERE US1.usuario = _USUARIO;
+END $$
+DELIMITER ;
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_ACTUALIZAR_ESTATUS_USUARIO;
+DELIMITER $$
+CREATE PROCEDURE STP_ACTUALIZAR_ESTATUS_USUARIO(
+    IN _USUARIO VARCHAR(150),
+    IN _STATUS VARCHAR(15)
+)
+BEGIN
+    UPDATE manzac.usuarios SET 
+        status = _STATUS 
+    WHERE usuario = _USUARIO;
+END $$
+DELIMITER ;
+
+
+
+
+
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/

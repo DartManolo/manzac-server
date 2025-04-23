@@ -33,6 +33,34 @@
                 return "error";
             }
         }
+
+        public static function guardarTxt($params) {
+            try {
+                $archivo_txt = (object)$params;
+                $archivo = $archivo_txt->nombre;
+                $contenido = $archivo_txt->contenido;
+                if (file_put_contents($archivo, $contenido) !== false) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception $e) {
+                return false;
+            }
+        }
+
+        public static function leerTxt($params) {
+            try {
+                if (file_exists($params)) {
+                    $contenido = file_get_contents($params);
+                    return $contenido;
+                } else {
+                    return "error";
+                }
+            } catch (Exception $e) {
+                return "error";
+            }
+        }
     
         public static function guid() {
             $guid_cadena = sprintf(

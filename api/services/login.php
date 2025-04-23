@@ -49,6 +49,21 @@
             return "ERROR";
         }
 
+        public static function reestablecerPassword($params) {
+            Auth::verify();
+            if(!isset($params[0]) || count($params) == 0) {
+                http_response_code(406);
+                die("Parámetros de usuario incorrectos");
+            }
+            $usuario = $params[0];
+            $nueva_pass = rand(1000, 9999);
+            $mysql = new Mysql();
+            $actualizar_password = $mysql->executeNonQuery(
+                "CALL STP_RECUPERACION_USUARIO_PASSWORD('$usuario', '$nueva_pass', 'PASSTEMPORAL')"
+            );
+            return json_encode($nueva_pass);
+        }
+
         public static function actualizarPassword($params) {
             Auth::verify();
             $password_form = (object)$params;
@@ -64,43 +79,6 @@
                 "CALL STP_RECUPERACION_USUARIO_PASSWORD('$usuario', '$nueva_pass', 'ACTIVO')"
             );
             return json_encode($actualizar_password == 1);
-        }
-
-        public static function actualizarUsuario($params) {
-            Auth::verify();
-            $usuario_form = (object)$params;
-            if(!isset($usuario_form->idUsuario)
-                || !isset($usuario_form->usuario)
-                || !isset($usuario_form->sesion)
-                || !isset($usuario_form->firebase)) {
-                http_response_code(406);
-                die("Parámetros de actualización incorrectos");
-            }
-            $mysql = new Mysql();
-            $resultado_actualizar = $mysql->executeNonQuery(
-                "CALL STP_ACTUALIZAR_SESION(
-                    '$usuario_form->idUsuario',
-                    '$usuario_form->usuario',
-                    '$usuario_form->sesion',
-                    '$usuario_form->firebase'
-                )"
-            );
-            return json_encode($resultado_actualizar == 1);
-        }
-
-        public static function acpetaTerminosCondiciones($params) {
-            Auth::verify();
-            $acepta_form = (object)$params;
-            if(!isset($acepta_form->idUsuario)
-                || !isset($acepta_form->acepta)) {
-                http_response_code(406);
-                die("Parámetros de configuración incorrectos");
-            }
-            $mysql = new Mysql();
-            $resultado_aceptar = $mysql->executeNonQuery(
-                "CALL STP_ACEPTA_ACTUALIZAR('$acepta_form->idUsuario', $acepta_form->acepta)"
-            );
-            return json_encode($resultado_aceptar == 1);
         }
     }
 ?>
