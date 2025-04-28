@@ -23,7 +23,7 @@
             if(!isset($firma_data->nombre) 
                 || !isset($firma_data->contenido)) {
                 http_response_code(406);
-                die("Parámetros de notificación incorrectos");
+                die("Parámetros de firma incorrectos");
             }
             $alta_firma = Util::guardarTxt($firma_data);
             return json_encode($alta_firma);
@@ -68,7 +68,7 @@
             Auth::verify();
             if(!isset($params[0]) || count($params) == 0) {
                 http_response_code(406);
-                die("Parámetros de usuario incorrectos");
+                die("Parámetros de configuración incorrectos");
             }
             $id_usuario = $params[0];
             $mysql = new Mysql();
@@ -85,7 +85,7 @@
             if(!isset($imagen_logo->idUsuario) 
                 || !isset($imagen_logo->imagenBase64)) {
                 http_response_code(406);
-                die("Parámetros de notificación incorrectos");
+                die("Parámetros de imagen incorrectos");
             }
             $imagen_base64 = base64_decode($imagen_logo->imagenBase64);
             file_put_contents("../media/usuarios/{$imagen_logo->idUsuario}.jpg", $imagen_base64);

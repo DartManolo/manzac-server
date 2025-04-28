@@ -76,5 +76,10 @@
             );
             return strtolower($guid_cadena);   
         }
+
+        public static function esFecha($fecha) {
+            $d = DateTime::createFromFormat('Y-m-d', $fecha);
+            return $d && $d->format('Y-m-d') === $fecha;
+        }
     }
 ?>
