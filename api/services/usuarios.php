@@ -20,14 +20,18 @@
             if($verificar->ACTIVO > 0) {
                 return "USR-EXISTE";
             }
-            $token = Util::guid();
-            $id_sistema = Util::guid();
+            $data_params = new stdClass();
+            $data_params->token = Util::guid();
+            $data_params->idSistema = Util::guid();
+            $data_params->usuario = $usuario->usuario;
+            $data_params->usuarioToken = $usuario->token;
+            $data_params->status = $usuario->status;
+            $data_params->nombres = $usuario->nombres;
+            $data_params->apellidos = $usuario->apellidos;
+            $data_params->perfil = $usuario->perfil;
             $alta_usuario = $mysql->executeNonQuery(
-                "CALL STP_ALTA_USUARIO(
-                    '$token', '$id_sistema', '{$usuario->usuario}', 
-                    '{$usuario->token}', '{$usuario->status}',
-                    '{$usuario->nombres}', '{$usuario->apellidos}', '{$usuario->perfil}'
-                )"
+                "CALL STP_ALTA_USUARIO(?,?,?,?,?,?,?,?)",
+                $data_params
             );
             return json_encode($alta_usuario == 1);
         }
@@ -74,11 +78,13 @@
                 http_response_code(406);
                 die("Parámetros de usuario incorrectos");
             }
-            $usuario = $params[0];
-            $estatus = $params[1];
             $mysql = new Mysql();
+            $data_params = new stdClass();
+            $data_params->usuario = $params[0];
+            $data_params->estatus = $params[1];
             $actualizar = $mysql->executeNonQuery(
-                "CALL STP_ACTUALIZAR_ESTATUS_USUARIO('$usuario', '$estatus')"
+                "CALL STP_ACTUALIZAR_ESTATUS_USUARIO(?, ?)",
+                $data_params
             );
             return json_encode($actualizar == 1);
         }

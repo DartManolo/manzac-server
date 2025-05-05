@@ -13,11 +13,12 @@
                 true
             );
             try {
+                $data_param = new stdClass();
+                $data_param->usuario = $login_form->usuario;
+                $data_param->log = 'INICIO DE SESION';
                 $resultado_actualizar = $mysql->executeNonQuery(
-                    "CALL STP_USUARIO_LOG_INSERT(
-                        '{$login_form->usuario}',
-                        'INICIO DE SESION'
-                    )"
+                    "CALL STP_USUARIO_LOG_INSERT(?,?)",
+                    $data_param
                 );
             } finally { }
             return json_encode($resultado_login);
@@ -39,29 +40,19 @@
                 return "NO-USUARIO";
             }
             $nueva_pass = rand(100000, 199999);
+            $data_param = new stdClass();
+            $data_param->usuario = $usuario;
+            $data_param->password = $nueva_pass;
+            $data_param->status = 'PASSTEMPORAL';
             $actualizar_password = $mysql->executeNonQuery(
-                "CALL STP_RECUPERACION_USUARIO_PASSWORD('$usuario', '$nueva_pass', 'PASSTEMPORAL')"
+                "CALL STP_RECUPERACION_USUARIO_PASSWORD(?,?,?)",
+                $data_param
             );
             $email = new Email();
             if($email->nuevoPassword($usuario, $nueva_pass)) {
                 return "PASSWORD-ENVIADO";
             }
             return "ERROR";
-        }
-
-        public static function reestablecerPassword($params) {
-            Auth::verify();
-            if(!isset($params[0]) || count($params) == 0) {
-                http_response_code(406);
-                die("Parámetros de usuario incorrectos");
-            }
-            $usuario = $params[0];
-            $nueva_pass = rand(1000, 9999);
-            $mysql = new Mysql();
-            $actualizar_password = $mysql->executeNonQuery(
-                "CALL STP_RECUPERACION_USUARIO_PASSWORD('$usuario', '$nueva_pass', 'PASSTEMPORAL')"
-            );
-            return json_encode($nueva_pass);
         }
 
         public static function actualizarPassword($params) {
@@ -72,11 +63,14 @@
                 http_response_code(406);
                 die("Parámetros de contraseña incorrectos");
             }
-            $usuario = $password_form->usuario;
-            $nueva_pass = $password_form->password;
+            $data_param = new stdClass();
+            $data_param->usuario = $password_form->usuario;
+            $data_param->password = $password_form->password;
+            $data_param->status = 'ACTIVO';
             $mysql = new Mysql();
             $actualizar_password = $mysql->executeNonQuery(
-                "CALL STP_RECUPERACION_USUARIO_PASSWORD('$usuario', '$nueva_pass', 'ACTIVO')"
+                "CALL STP_RECUPERACION_USUARIO_PASSWORD(?,?,?)",
+                $data_param
             );
             return json_encode($actualizar_password == 1);
         }

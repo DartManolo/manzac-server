@@ -10,24 +10,41 @@
                     $imagenes = array();
                     $img_folder = "";
                     $tipo = "";
+                    $data_params = new stdClass();
                     if($reporte->reporteEntrada != null) {
                         $entrada = (object)$reporte->reporteEntrada;
                         $id_tarja = $entrada->idTarja;
                         $imagenes = $entrada->imagenes;
                         $tipo = $entrada->tipo;
                         $img_folder = "../media/entradas";
+                        $data_params->idTarja = $entrada->idTarja;
+                        $data_params->tipo = $entrada->tipo;
+                        $data_params->fecha = $entrada->fecha;
+                        $data_params->referenciaLm = $entrada->referenciaLm;
+                        $data_params->imo = $entrada->imo;
+                        $data_params->horaInicio = $entrada->horaInicio;
+                        $data_params->horaFin = $entrada->horaFin;
+                        $data_params->cliente = $entrada->cliente;
+                        $data_params->mercancia = $entrada->mercancia;
+                        $data_params->agenteAduanal = $entrada->agenteAduanal;
+                        $data_params->ejecutivo = $entrada->ejecutivo;
+                        $data_params->contenedor = $entrada->contenedor;
+                        $data_params->pedimento = $entrada->pedimento;
+                        $data_params->sello = $entrada->sello;
+                        $data_params->buque = $entrada->buque;
+                        $data_params->refCliente = $entrada->refCliente;
+                        $data_params->bultos = $entrada->bultos;
+                        $data_params->peso = $entrada->peso;
+                        $data_params->terminal = $entrada->terminal;
+                        $data_params->fechaDespacho = $entrada->fechaDespacho;
+                        $data_params->diasLibres = $entrada->diasLibres;
+                        $data_params->fechaVencimiento = $entrada->fechaVencimiento;
+                        $data_params->movimiento = $entrada->movimiento;
+                        $data_params->observaciones = $entrada->observaciones;
+                        $data_params->usuario = $entrada->usuario;
                         $alta_entrada = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_ENTRADA(
-                                '$entrada->idTarja', '$entrada->tipo', '$entrada->fecha', 
-                                '$entrada->referenciaLm', '$entrada->imo', '$entrada->horaInicio', 
-                                '$entrada->horaFin', '$entrada->cliente', '$entrada->mercancia', 
-                                '$entrada->agenteAduanal', '$entrada->ejecutivo', '$entrada->contenedor', 
-                                '$entrada->pedimento', '$entrada->sello', '$entrada->buque', 
-                                '$entrada->refCliente', '$entrada->bultos', '$entrada->peso', 
-                                '$entrada->terminal', '$entrada->fechaDespacho', '$entrada->diasLibres', 
-                                '$entrada->fechaVencimiento', '$entrada->movimiento', '$entrada->observaciones', 
-                                '$entrada->usuario' 
-                            )"
+                            "CALL STP_ALTA_REPORTE_ENTRADA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            $data_params
                         );
                     } else if($reporte->reporteSalida != null) {
                         $salida = (object)$reporte->reporteSalida;
@@ -35,18 +52,34 @@
                         $imagenes = $salida->imagenes;
                         $tipo = $salida->tipo;
                         $img_folder = "../media/salidas";
+                        $data_params->idTarja = $salida->idTarja;
+                        $data_params->tipo = $salida->tipo;
+                        $data_params->fecha = $salida->fecha;
+                        $data_params->referenciaLm = $salida->referenciaLm;
+                        $data_params->imo = $salida->imo;
+                        $data_params->horaInicio = $salida->horaInicio;
+                        $data_params->horaFin = $salida->horaFin;
+                        $data_params->cliente = $salida->cliente;
+                        $data_params->mercancia = $salida->mercancia;
+                        $data_params->agenteAduanal = $salida->agenteAduanal;
+                        $data_params->ejecutivo = $salida->ejecutivo;
+                        $data_params->contenedor = $salida->contenedor;
+                        $data_params->pedimento = $salida->pedimento;
+                        $data_params->sello = $salida->sello;
+                        $data_params->buque = $salida->buque;
+                        $data_params->refCliente = $salida->refCliente;
+                        $data_params->bultos = $salida->bultos;
+                        $data_params->peso = $salida->peso;
+                        $data_params->terminal = $salida->terminal;
+                        $data_params->transporte = $salida->transporte;
+                        $data_params->operador = $salida->operador;
+                        $data_params->placas = $salida->placas;
+                        $data_params->licencia = $salida->licencia;
+                        $data_params->observaciones = $salida->observaciones;
+                        $data_params->usuario = $salida->usuario;
                         $alta_salida = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_SALIDA(
-                                '$salida->idTarja', '$salida->tipo', '$salida->fecha', 
-                                '$salida->referenciaLm', '$salida->imo', '$salida->horaInicio', 
-                                '$salida->horaFin', '$salida->cliente', '$salida->mercancia', 
-                                '$salida->agenteAduanal', '$salida->ejecutivo', '$salida->contenedor', 
-                                '$salida->pedimento', '$salida->sello', '$salida->buque', 
-                                '$salida->refCliente', '$salida->bultos', '$salida->peso', 
-                                '$salida->terminal', '$salida->transporte', '$salida->operador', 
-                                '$salida->placas', '$salida->licencia', '$salida->observaciones', 
-                                '$salida->usuario' 
-                            )"
+                            "CALL STP_ALTA_REPORTE_SALIDA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            $data_params
                         );
                     } else if($reporte->reporteDanio != null) {
                         $danio = (object)$reporte->reporteDanio;
@@ -54,26 +87,58 @@
                         $imagenes = $danio->imagenes;
                         $img_folder = "../media/danios";
                         $tipo = $danio->tipo;
+                        $data_params->idTarja = $danio->idTarja;
+                        $data_params->tipo = $danio->tipo;
+                        $data_params->fecha = $danio->fecha;
+                        $data_params->fechaCreado = $danio->fechaCreado;
+                        $data_params->version = $danio->version;
+                        $data_params->clave = $danio->clave;
+                        $data_params->fechaReporte = $danio->fechaReporte;
+                        $data_params->lineaNaviera = $danio->lineaNaviera;
+                        $data_params->cliente = $danio->cliente;
+                        $data_params->numContenedor = $danio->numContenedor;
+                        $data_params->vacio = $danio->vacio;
+                        $data_params->lleno = $danio->lleno;
+                        $data_params->d20 = $danio->d20;
+                        $data_params->d40 = $danio->d40;
+                        $data_params->hc = $danio->hc;
+                        $data_params->otro = $danio->otro;
+                        $data_params->estandar = $danio->estandar;
+                        $data_params->opentop = $danio->opentop;
+                        $data_params->flatRack = $danio->flatRack;
+                        $data_params->reefer = $danio->reefer;
+                        $data_params->reforzado = $danio->reforzado;
+                        $data_params->numSello = $danio->numSello;
+                        $data_params->intPuertasIzq = $danio->intPuertasIzq;
+                        $data_params->intPuertasDer = $danio->intPuertasDer;
+                        $data_params->intPiso = $danio->intPiso;
+                        $data_params->intTecho = $danio->intTecho;
+                        $data_params->intPanelLateralIzq = $danio->intPanelLateralIzq;
+                        $data_params->intPanelLateralDer = $danio->intPanelLateralDer;
+                        $data_params->intPanelFondo = $danio->intPanelFondo;
+                        $data_params->extPuertasIzq = $danio->extPuertasIzq;
+                        $data_params->extPuertasDer = $danio->extPuertasDer;
+                        $data_params->extPoste = $danio->extPoste;
+                        $data_params->extPalanca = $danio->extPalanca;
+                        $data_params->extGanchoCierre = $danio->extGanchoCierre;
+                        $data_params->extPanelIzq = $danio->extPanelIzq;
+                        $data_params->extPanelDer = $danio->extPanelDer;
+                        $data_params->extPanelFondo = $danio->extPanelFondo;
+                        $data_params->extCantonera = $danio->extCantonera;
+                        $data_params->extFrisa = $danio->extFrisa;
+                        $data_params->observaciones = $danio->observaciones;
+                        $data_params->usuario = $danio->usuario;
                         $alta_danios = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_DANIOS(
-                                '$danio->idTarja', '$danio->tipo', '$danio->fecha', '$danio->fechaCreado', 
-                                '$danio->version', '$danio->clave', '$danio->fechaReporte', '$danio->lineaNaviera', 
-                                '$danio->cliente', '$danio->numContenedor', '$danio->vacio', '$danio->lleno', 
-                                '$danio->d20', '$danio->d40', '$danio->hc', '$danio->otro', '$danio->estandar', 
-                                '$danio->opentop', '$danio->flatRack', '$danio->reefer', '$danio->reforzado', 
-                                '$danio->numSello', '$danio->intPuertasIzq', '$danio->intPuertasDer', '$danio->intPiso', 
-                                '$danio->intTecho', '$danio->intPanelLateralIzq', '$danio->intPanelLateralDer', 
-                                '$danio->intPanelFondo', '$danio->extPuertasIzq', '$danio->extPuertasDer', 
-                                '$danio->extPoste', '$danio->extPalanca', '$danio->extGanchoCierre', 
-                                '$danio->extPanelIzq', '$danio->extPanelDer', '$danio->extPanelFondo', 
-                                '$danio->extCantonera', '$danio->extFrisa', '$danio->observaciones', 
-                                '$danio->usuario' 
-                            )"
+                            "CALL STP_ALTA_REPORTE_DANIOS(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            $data_params,
                         );
                     }
                     if(count($imagenes) > 0) {
+                        $data_params = new stdClass();
+                        $data_params->idTarja = $id_tarja;
                         $restablecer_imgs = $mysql->executeNonQuery(
-                            "CALL STP_RESTABLECER_REPORTE_IMAGENES('$id_tarja')"
+                            "CALL STP_RESTABLECER_REPORTE_IMAGENES(?)",
+                            $data_params
                         );
                         foreach($imagenes as $imagen_list) {
                             $imagen = (object)$imagen_list;
@@ -88,12 +153,18 @@
                             } else {
                                 $img_folder_alta = "SIN_IMAGEN";
                             }
+                            $data_params = new stdClass();
+                            $data_params->idTarja = $imagen->idTarja;
+                            $data_params->idImagen = $imagen->idImagen;
+                            $data_params->formato = $imagen->formato;
+                            $data_params->fila = $imagen->fila;
+                            $data_params->posicion = $imagen->posicion;
+                            $data_params->tipo = $tipo;
+                            $data_params->imgFolderAlta = $img_folder_alta;
+                            $data_params->usuario = $imagen->usuario;
                             $alta_imagen_reporte = $mysql->executeNonQuery(
-                                "CALL STP_ALTA_REPORTE_IMAGENES(
-                                    '$imagen->idTarja', '$imagen->idImagen', '$imagen->formato', 
-                                    $imagen->fila, $imagen->posicion, '$tipo',
-                                    '$img_folder_alta', '$imagen->usuario' 
-                                )"
+                                "CALL STP_ALTA_REPORTE_IMAGENES(?,?,?,?,?,?,?,?)",
+                                $data_params
                             );
                         }
                     }
@@ -102,32 +173,6 @@
             } catch(Exception $e) {
                 return json_encode(false);
             }
-            //Auth::verify();
-            //$reportes = new ArrayObject($params);
-            //print_r($params);
-            //die("Hola");
-            //return json_encode($params);
-            /*die(json_encode($params));
-            foreach($params as $par) {
-                $data_json = (object)$par;
-                die(json_encode($data_json));
-            }
-            die(is_array($params));*/
-            /*$leer_imagen = new stdClass();
-            $leer_imagen->ruta = "../media/imgs";
-            $leer_imagen->nombre = "dibujo2.jpg";
-            $imagen_base64 = Util::leerImagen($leer_imagen);
-            die($imagen_base64);*/
-            /*foreach($params as $par) {
-                $data_json = (object)$par;
-                $nueva_imagen = new stdClass();
-                $nueva_imagen->ruta = "../media/imgs";
-                $nueva_imagen->nombre = Util::guid();
-                $nueva_imagen->extension = "jpg";
-                $nueva_imagen->imagenBase64 = $data_json->imagenb64;
-                $alta_imagen = Util::guardarImagen($nueva_imagen);
-                echo $alta_imagen;
-            }*/
         }
 
         public static function consulta($params) {

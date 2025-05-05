@@ -7,7 +7,7 @@
         }
 
         public function conection() {
-            $mysql_params = explode("~", getenv('MYSQLCONN'));
+            $mysql_params = explode("~", getenv('MYSQLCONNML'));
             $this->conn = mysqli_init();
             $this->conn->options(MYSQLI_OPT_CONNECT_TIMEOUT, 300);
             $this->conn->options(MYSQLI_SET_CHARSET_NAME, "utf8");
@@ -33,17 +33,37 @@
             return $resultado;
         }
 
-        public function executeNonQuery($query) {
-            $resultado = $this->conn->query($query);
-            if(!$resultado) {
-                return $this->conn->connect_error;
-            } else {
-                do {
-                } while(
-                    mysqli_more_results($this->conn) && mysqli_next_result($this->conn)
-                );
-                return $resultado;
+        public function executeNonQuery($query, $params = []) {
+            $stmt = $this->conn->prepare($query);
+            if (!$stmt) {
+                return $stmt->error;
             }
+            if (!empty($params)) {
+                $types = '';
+                $values = [];
+                foreach ($params as $param) {
+                    if (is_int($param)) {
+                        $types .= 'i';
+                    } elseif (is_float($param)) {
+                        $types .= 'd';
+                    } elseif (is_string($param)) {
+                        $types .= 's';
+                    } else {
+                        $types .= 'b';
+                    }
+                    $values[] = $param;
+                }
+                $stmt->bind_param($types, ...$values);
+            }
+            if (!$stmt->execute()) {
+                return $stmt->error;
+            }
+            do {
+                if ($result = $stmt->get_result()) {
+                    $result->free();
+                }
+            } while ($stmt->more_results() && $stmt->next_result());
+            return true;
         }
     }
 ?>

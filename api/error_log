@@ -157,3 +157,18 @@ Stack trace:
 #0 /home/og8coq8piwnp/public_html/api/index.php(76): Reportes::imagenes()
 #1 {main}
   thrown in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 216
+[27-Apr-2025 19:24:07 America/Mexico_City] PHP Warning:  Undefined variable $mysql in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 216
+[27-Apr-2025 19:24:07 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function executeReader() on null in /home/og8coq8piwnp/public_html/api/services/reportes.php:216
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Reportes::imagenes()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 216
+[04-May-2025 23:22:55 America/Mexico_City] PHP Warning:  Undefined array key 1 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 16
+[04-May-2025 23:22:55 America/Mexico_City] PHP Warning:  Undefined array key 2 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 17
+[04-May-2025 23:22:55 America/Mexico_City] PHP Warning:  Undefined array key 3 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 18
+[04-May-2025 23:22:59 America/Mexico_City] PHP Warning:  Undefined array key 1 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 16
+[04-May-2025 23:22:59 America/Mexico_City] PHP Warning:  Undefined array key 2 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 17
+[04-May-2025 23:22:59 America/Mexico_City] PHP Warning:  Undefined array key 3 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 18
+[04-May-2025 23:23:04 America/Mexico_City] PHP Warning:  Undefined array key 1 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 16
+[04-May-2025 23:23:04 America/Mexico_City] PHP Warning:  Undefined array key 2 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 17
+[04-May-2025 23:23:04 America/Mexico_City] PHP Warning:  Undefined array key 3 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 18
