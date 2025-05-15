@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Google
+api/24da93be-673f-49f5-b71c-b756724e8e8d/service-account.json
+api/24da93be-673f-49f5-b71c-b756724e8e8d/
+
 # User-specific files
 *.rsuser
 *.suo

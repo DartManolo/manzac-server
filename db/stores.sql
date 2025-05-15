@@ -69,6 +69,21 @@ DELIMITER ;
 
 
 /* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_ACTUALIZAR_SESION;
+DELIMITER $$
+CREATE PROCEDURE STP_ACTUALIZAR_SESION(
+    IN _IDSISTEMA VARCHAR(120),
+    IN _FIREBASE VARCHAR(350)
+)
+BEGIN
+    UPDATE manzac.usuarios SET 
+        id_firebase = _FIREBASE 
+    WHERE id_sistema = _IDSISTEMA;
+END $$
+DELIMITER ;
+
+
+/* ------------------------------------------------------------------------------------*/
 DROP PROCEDURE IF EXISTS STP_USUARIO_LOG_INSERT;
 DELIMITER $$
 CREATE PROCEDURE STP_USUARIO_LOG_INSERT(

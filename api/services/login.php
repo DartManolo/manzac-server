@@ -3,7 +3,8 @@
         public static function iniciarSesion($params) {
             $login_form = (object)$params;
             if(!isset($login_form->usuario) 
-                || !isset($login_form->password)) {
+                || !isset($login_form->password)
+                || !isset($login_form->firebase)) {
                 http_response_code(406);
                 die("Parámetros de inicio de sesión incorrectos");
             }
@@ -13,6 +14,13 @@
                 true
             );
             try {
+                $update = new stdClass();
+                $update->idSistema = $resultado_login->id_sistema;
+                $update->idFirebase = $login_form->firebase;
+                $update_usuario = $mysql->executeNonQuery(
+                    "CALL STP_ACTUALIZAR_SESION(?,?)",
+                    $update
+                );
                 $data_param = new stdClass();
                 $data_param->usuario = $login_form->usuario;
                 $data_param->log = 'INICIO DE SESION';
