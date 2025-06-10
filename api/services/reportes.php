@@ -283,5 +283,97 @@
             }
             return json_encode($imagenes);
         }
+
+        public static function imagenesEmpty($params) {
+            Auth::verify();
+            if(!isset($params[0]) || count($params) == 0) {
+                http_response_code(406);
+                die("Parámetros de consulta incorrectos");
+            }
+            $id_tarja = $params[0];
+            $imagenes = array();
+            $mysql = new Mysql();
+            $imagenes_bd = $mysql->executeReader(
+                "CALL STP_OBTENER_REPORTE_IMAGENES_IDTARJA('$id_tarja')"
+            );
+            foreach($imagenes_bd as $imagen_bd) {
+                $imagen = new stdClass();
+                $imagen->idTarja = $imagen_bd->id_tarja;
+                $imagen->idImagen = $imagen_bd->id_imagen;
+                $imagen->formato = $imagen_bd->formato;
+                $imagen->fila = $imagen_bd->fila;
+                $imagen->posicion = $imagen_bd->posicion;
+                $base64 = "";
+                if($imagen_bd->folder != "SIN_IMAGEN") {
+                    $base64 = "URL";
+                }
+                $imagen->base64 = $base64;
+                $imagen->tipo = $imagen_bd->tipo;
+                $imagen->usuario = $imagen_bd->usuario;
+                array_push($imagenes, $imagen);
+            }
+            return json_encode($imagenes);
+        }
+
+        public static function imagenesPaginado($params) {
+            Auth::verify();
+            if(!isset($params[0]) || !isset($params[1])
+                || !isset($params[2]) || count($params) == 0) {
+                http_response_code(406);
+                die("Parámetros de consulta incorrectos");
+            }
+            $id_tarja = $params[0];
+            $ini_pag = intval($params[1]);
+            $fin_pag = intval($params[2]);
+            $imagenes = array();
+            $mysql = new Mysql();
+            $imagenes_bd = $mysql->executeReader(
+                "CALL STP_OBTENER_REPORTE_IMAGENES_IDTARJA('$id_tarja')"
+            );
+            $cont = 0;
+            foreach($imagenes_bd as $imagen_bd) {
+                $cont++;
+                if($cont < $ini_pag || $cont > $fin_pag) {
+                    continue;
+                }
+                $imagen = new stdClass();
+                $imagen->idTarja = $imagen_bd->id_tarja;
+                $imagen->idImagen = $imagen_bd->id_imagen;
+                $imagen->formato = $imagen_bd->formato;
+                $imagen->fila = $imagen_bd->fila;
+                $imagen->posicion = $imagen_bd->posicion;
+                $base64 = "";
+                if($imagen_bd->folder != "SIN_IMAGEN") {
+                    $leer_imagen = new stdClass();
+                    $leer_imagen->ruta = $imagen_bd->folder;
+                    $leer_imagen->nombre = "$imagen_bd->id_imagen.$imagen_bd->formato";
+                    $base64 = Util::leerImagen($leer_imagen);
+                }
+                $imagen->base64 = $base64;
+                $imagen->tipo = $imagen_bd->tipo;
+                $imagen->usuario = $imagen_bd->usuario;
+                array_push($imagenes, $imagen);
+            }
+            return json_encode($imagenes);
+        }
+
+        public static function imagenesContador($params) {
+            Auth::verify();
+            if(!isset($params[0]) || count($params) == 0) {
+                http_response_code(406);
+                die("Parámetros de consulta incorrectos");
+            }
+            $id_tarja = $params[0];
+            $imagenes = array();
+            $mysql = new Mysql();
+            $imagenes_bd = $mysql->executeReader(
+                "CALL STP_OBTENER_REPORTE_IMAGENES_IDTARJA('$id_tarja')"
+            );
+            $cont = 0;
+            foreach($imagenes_bd as $imagen_bd) {
+                $cont++;
+            }
+            return $cont;
+        }
     }
 ?>

@@ -215,6 +215,7 @@ BEGIN
         US1.status AS status,
         US1.nombres AS nombres,
         US1.apellidos AS apellidos,
+        US1.id_firebase AS idFirebase,
         US1.perfil AS perfil 
     FROM manzac.usuarios AS US1;
 END $$
@@ -885,6 +886,7 @@ BEGIN
         folder,
         usuario
     FROM manzac.reportes_imagenes
-        WHERE id_tarja = _IDTARJA;
+        WHERE id_tarja = _IDTARJA
+    ORDER BY fila, posicion;
 END $$
 DELIMITER ;

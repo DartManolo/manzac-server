@@ -108,5 +108,36 @@
             }
             return "OK";
         }
+
+        public static function notificarAdminsForbidenLogout($params) {
+            Auth::verify();
+            $notificacion = (object)$params;
+            if(!isset($notificacion->titulo) 
+                || !isset($notificacion->cuerpo)
+                || !isset($notificacion->idSistema)) {
+                http_response_code(406);
+                die("Parámetros de notificación incorrectos");
+            }
+            $mysql = new Mysql();
+            $lista_usuarios = $mysql->executeReader(
+                "CALL STP_OBTENER_USUARIOS()"
+            );
+            foreach($lista_usuarios as $lista_usuario) {
+                $usuario = (object)$lista_usuario;
+                if($usuario->perfil !== "ADMINISTRADOR"
+                    || $usuario->idSistema === $notificacion->idSistema) {
+                    continue;
+                }
+                $data = new stdClass();
+                $data->accion = "USER-FORBIDEN-LOGOUT";
+                $data->contenido = $notificacion->cuerpo;
+                $msg = new stdClass();
+                $msg->titulo = $notificacion->titulo;
+                $msg->cuerpo = $notificacion->cuerpo;
+                $msg->ids = array($usuario->idFirebase);
+                $msg->data = $data;
+                Firebase::enviarNotificacionExternal(json_decode(json_encode($msg), true));
+            }
+        }
     }
 ?>
