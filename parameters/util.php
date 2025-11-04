@@ -81,5 +81,18 @@
             $d = DateTime::createFromFormat('Y-m-d', $fecha);
             return $d && $d->format('Y-m-d') === $fecha;
         }
+
+        public static function log($e) {
+            $mysql = new Mysql();
+            $error = new stdClass();
+            $error->mensaje = $e->getMessage();
+            $error->archivo = $e->getFile();
+            $error->linea = $e->getLine();
+            $error->pila = $e->getTraceAsString();
+            $alta_log = $mysql->executeNonQuery(
+                "CALL STP_ALTA_ERROR_LOG(?,?,?,?)",
+                $error
+            );
+        }
     }
 ?>

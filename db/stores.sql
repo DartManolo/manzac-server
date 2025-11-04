@@ -890,3 +890,26 @@ BEGIN
     ORDER BY fila, posicion;
 END $$
 DELIMITER ;
+
+
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_ALTA_ERROR_LOG;
+DELIMITER $$
+CREATE PROCEDURE STP_ALTA_ERROR_LOG(
+    IN _MENSAJE TEXT, IN _ARCHIVO VARCHAR(255), IN _LINEA INT, IN _PILA TEXT
+)
+BEGIN
+    INSERT INTO manzac.error_log (
+        mensaje,
+        archivo,
+        linea,
+        pila
+    ) VALUES (
+        _MENSAJE,
+        _ARCHIVO,
+        _LINEA,
+        _PILA
+    );
+END $$
+DELIMITER ;

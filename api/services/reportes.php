@@ -130,7 +130,7 @@
                         $data_params->usuario = $danio->usuario;
                         $alta_danios = $mysql->executeNonQuery(
                             "CALL STP_ALTA_REPORTE_DANIOS(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                            $data_params,
+                            $data_params
                         );
                     }
                     if(count($imagenes) > 0) {
@@ -171,6 +171,10 @@
                 }
                 return json_encode(true);
             } catch(Exception $e) {
+                Util::log($e);
+                return json_encode(false);
+            } catch(Error $e) {
+                Util::log($e);
                 return json_encode(false);
             }
         }

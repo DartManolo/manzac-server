@@ -156,6 +156,15 @@ CREATE TABLE IF NOT EXISTS reportes_imagenes(
     fh_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora del registro'
 );
 
+CREATE TABLE error_log (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    mensaje TEXT NOT NULL,
+    archivo VARCHAR(255) NULL,
+    linea INT NULL,
+    pila TEXT NULL,
+    fh_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora del registro'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 /*
 INSERT INTO autorization (
     token
