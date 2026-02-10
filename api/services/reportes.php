@@ -3,6 +3,7 @@
         public static function alta($params) {
             try {
                 Auth::verify();
+                $fecha = date('Y-m-d H:i:s');
                 $mysql = new Mysql();
                 foreach($params as $param) {
                     $reporte = (object)$param;
@@ -43,7 +44,7 @@
                         $data_params->observaciones = $entrada->observaciones;
                         $data_params->usuario = $entrada->usuario;
                         $alta_entrada = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_ENTRADA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            "CALL STP_ALTA_REPORTE_ENTRADA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'$fecha')",
                             $data_params
                         );
                     } else if($reporte->reporteSalida != null) {
@@ -78,7 +79,7 @@
                         $data_params->observaciones = $salida->observaciones;
                         $data_params->usuario = $salida->usuario;
                         $alta_salida = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_SALIDA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            "CALL STP_ALTA_REPORTE_SALIDA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'$fecha')",
                             $data_params
                         );
                     } else if($reporte->reporteDanio != null) {
@@ -129,7 +130,7 @@
                         $data_params->observaciones = $danio->observaciones;
                         $data_params->usuario = $danio->usuario;
                         $alta_danios = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_DANIOS(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                            "CALL STP_ALTA_REPORTE_DANIOS(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'$fecha')",
                             $data_params
                         );
                     }
@@ -163,7 +164,7 @@
                             $data_params->imgFolderAlta = $img_folder_alta;
                             $data_params->usuario = $imagen->usuario;
                             $alta_imagen_reporte = $mysql->executeNonQuery(
-                                "CALL STP_ALTA_REPORTE_IMAGENES(?,?,?,?,?,?,?,?)",
+                                "CALL STP_ALTA_REPORTE_IMAGENES(?,?,?,?,?,?,?,?,'$fecha')",
                                 $data_params
                             );
                         }
@@ -176,6 +177,9 @@
             } catch(Error $e) {
                 Util::log($e);
                 return json_encode(false);
+            } finally {
+                $nombre_archivo = Util::guid();
+                Util::crearArchivo("../logserror/$nombre_archivo.txt", json_encode($params));
             }
         }
 

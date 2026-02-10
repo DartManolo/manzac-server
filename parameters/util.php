@@ -61,6 +61,16 @@
                 return "error";
             }
         }
+
+        public static function crearArchivo($nombre_archivo, $contenido) {
+            try {
+                $archivo = fopen($nombre_archivo, "w");
+                if ($archivo) {
+                    fwrite($archivo, $contenido);
+                    fclose($archivo);
+                }
+            } finally { }
+        }
     
         public static function guid() {
             $guid_cadena = sprintf(
