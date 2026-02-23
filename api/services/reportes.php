@@ -2,6 +2,8 @@
     Class Reportes {
         public static function alta($params) {
             try {
+                $nombre_archivox = Util::guid();
+                Util::crearArchivo("../logserror/$nombre_archivox.txt", json_encode($params));
                 Auth::verify();
                 $fecha = date('Y-m-d H:i:s');
                 $mysql = new Mysql();
@@ -180,6 +182,24 @@
             } finally {
                 $nombre_archivo = Util::guid();
                 Util::crearArchivo("../logserror/$nombre_archivo.txt", json_encode($params));
+            }
+        }
+
+        public static function subirImagen($params) {
+            try {
+                return json_encode($_FILES);
+                if (isset($_FILES['imagen'])) {
+                    $nombreArchivo = basename($_FILES['imagen']['name']);
+                    return json_encode($nombreArchivo);
+                } else {
+                    return "FALSE";
+                }
+            } catch(Exception $e) {
+                Util::log($e);
+                return json_encode(false);
+            } catch(Error $e) {
+                Util::log($e);
+                return json_encode(false);
             }
         }
 

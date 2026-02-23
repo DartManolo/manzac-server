@@ -1,0 +1,241 @@
+[02-Apr-2025 22:50:02 America/Mexico_City] PHP Warning:  Undefined array key 1 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 16
+[02-Apr-2025 22:50:02 America/Mexico_City] PHP Warning:  Undefined array key 2 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 17
+[02-Apr-2025 22:50:02 America/Mexico_City] PHP Warning:  Undefined array key 3 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 18
+[20-Apr-2025 19:12:09 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined method Util::leerTxt() in /home/og8coq8piwnp/public_html/api/services/configuracion.php:10
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Configuracion::obtener()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/configuracion.php on line 10
+[20-Apr-2025 19:14:13 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined method Util::leerTxt() in /home/og8coq8piwnp/public_html/api/services/configuracion.php:10
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Configuracion::obtener()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/configuracion.php on line 10
+[20-Apr-2025 19:15:18 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined method Util::leerTxt() in /home/og8coq8piwnp/public_html/api/services/configuracion.php:10
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Configuracion::obtener()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/configuracion.php on line 10
+[20-Apr-2025 19:16:24 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined method Util::leerTxt() in /home/og8coq8piwnp/public_html/api/services/configuracion.php:10
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Configuracion::obtener()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/configuracion.php on line 10
+[20-Apr-2025 21:04:34 America/Mexico_City] PHP Fatal error:  Uncaught TypeError: call_user_func(): Argument #1 ($callback) must be a valid callback, class Usuarios does not have a method "manueltrujillogomez89@gmail.com" in /home/og8coq8piwnp/public_html/api/index.php:76
+Stack trace:
+#0 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/index.php on line 76
+[20-Apr-2025 21:05:32 America/Mexico_City] PHP Fatal error:  Uncaught TypeError: call_user_func(): Argument #1 ($callback) must be a valid callback, class Usuarios does not have a method "manueltrujillogomez89@gmail.com" in /home/og8coq8piwnp/public_html/api/index.php:76
+Stack trace:
+#0 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/index.php on line 76
+[20-Apr-2025 21:05:55 America/Mexico_City] PHP Warning:  Array to string conversion in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 16
+[20-Apr-2025 21:07:22 America/Mexico_City] PHP Warning:  Array to string conversion in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 16
+[20-Apr-2025 21:08:11 America/Mexico_City] PHP Warning:  Array to string conversion in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 16
+[20-Apr-2025 21:09:27 America/Mexico_City] PHP Warning:  Array to string conversion in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 14
+[21-Apr-2025 21:55:42 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$password in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 28
+[21-Apr-2025 21:59:58 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$password in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 28
+[21-Apr-2025 22:36:07 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$password in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 28
+[21-Apr-2025 22:39:16 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$password in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 28
+[24-Apr-2025 00:16:30 America/Mexico_City] PHP Warning:  Array to string conversion in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 6
+[24-Apr-2025 00:18:57 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function ArrayObject() in /home/og8coq8piwnp/public_html/api/services/reportes.php:5
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Reportes::alta()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 5
+[26-Apr-2025 00:59:33 America/Mexico_City] PHP Warning:  Attempt to read property "base64" on string in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 8
+[26-Apr-2025 01:07:33 America/Mexico_City] PHP Warning:  Attempt to read property "reporteEntrada" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 7
+[26-Apr-2025 01:07:33 America/Mexico_City] PHP Warning:  Attempt to read property "reporteSalida" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 10
+[26-Apr-2025 01:07:33 America/Mexico_City] PHP Warning:  Attempt to read property "reporteDanio" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 13
+[26-Apr-2025 01:08:15 America/Mexico_City] PHP Warning:  Attempt to read property "reporteEntrada" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 7
+[26-Apr-2025 01:08:15 America/Mexico_City] PHP Warning:  Attempt to read property "reporteSalida" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 10
+[26-Apr-2025 01:08:15 America/Mexico_City] PHP Warning:  Attempt to read property "reporteDanio" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 13
+[26-Apr-2025 01:10:02 America/Mexico_City] PHP Warning:  Attempt to read property "reporteEntrada" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 7
+[26-Apr-2025 01:10:03 America/Mexico_City] PHP Warning:  Attempt to read property "reporteSalida" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 10
+[26-Apr-2025 01:10:03 America/Mexico_City] PHP Warning:  Attempt to read property "reporteDanio" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 13
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$ruta in /home/og8coq8piwnp/public_html/parameters/util.php on line 8
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$nombre in /home/og8coq8piwnp/public_html/parameters/util.php on line 9
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$extension in /home/og8coq8piwnp/public_html/parameters/util.php on line 10
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$imagenBase64 in /home/og8coq8piwnp/public_html/parameters/util.php on line 11
+[26-Apr-2025 01:22:09 America/Mexico_City] PHP Warning:  file_put_contents(/.): Failed to open stream: Is a directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[26-Apr-2025 13:20:58 America/Mexico_City] PHP Warning:  Undefined variable $mysql in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 22
+[26-Apr-2025 13:20:58 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function executeNonQuery() on null in /home/og8coq8piwnp/public_html/api/services/reportes.php:22
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Reportes::alta()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 22
+[26-Apr-2025 13:21:24 America/Mexico_City] PHP Warning:  Undefined variable $mysql in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 22
+[26-Apr-2025 13:21:24 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function executeNonQuery() on null in /home/og8coq8piwnp/public_html/api/services/reportes.php:22
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Reportes::alta()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 22
+[26-Apr-2025 13:22:32 America/Mexico_City] PHP Warning:  Attempt to read property "idTarja" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:22:32 America/Mexico_City] PHP Warning:  Attempt to read property "idImagen" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:22:32 America/Mexico_City] PHP Warning:  Attempt to read property "formato" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:22:32 America/Mexico_City] PHP Warning:  Attempt to read property "fila" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:22:32 America/Mexico_City] PHP Warning:  Attempt to read property "posicion" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:22:32 America/Mexico_City] PHP Warning:  Attempt to read property "base64" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:22:32 America/Mexico_City] PHP Warning:  Attempt to read property "tipo" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 54
+[26-Apr-2025 13:22:32 America/Mexico_City] PHP Warning:  Attempt to read property "usuario" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 54
+[26-Apr-2025 13:24:46 America/Mexico_City] PHP Warning:  Attempt to read property "idTarja" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:24:46 America/Mexico_City] PHP Warning:  Attempt to read property "idImagen" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:24:46 America/Mexico_City] PHP Warning:  Attempt to read property "formato" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:24:46 America/Mexico_City] PHP Warning:  Attempt to read property "fila" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:24:46 America/Mexico_City] PHP Warning:  Attempt to read property "posicion" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:24:46 America/Mexico_City] PHP Warning:  Attempt to read property "base64" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:24:46 America/Mexico_City] PHP Warning:  Attempt to read property "tipo" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 54
+[26-Apr-2025 13:24:46 America/Mexico_City] PHP Warning:  Attempt to read property "usuario" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 54
+[26-Apr-2025 13:25:46 America/Mexico_City] PHP Warning:  Attempt to read property "idTarja" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:25:46 America/Mexico_City] PHP Warning:  Attempt to read property "idImagen" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:25:46 America/Mexico_City] PHP Warning:  Attempt to read property "formato" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 52
+[26-Apr-2025 13:25:46 America/Mexico_City] PHP Warning:  Attempt to read property "fila" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:25:46 America/Mexico_City] PHP Warning:  Attempt to read property "posicion" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:25:46 America/Mexico_City] PHP Warning:  Attempt to read property "base64" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 53
+[26-Apr-2025 13:25:46 America/Mexico_City] PHP Warning:  Attempt to read property "tipo" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 54
+[26-Apr-2025 13:25:46 America/Mexico_City] PHP Warning:  Attempt to read property "usuario" on array in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 54
+[27-Apr-2025 04:17:00 UTC] PHP Parse error:  syntax error, unexpected token "=" in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 44
+[27-Apr-2025 04:18:19 UTC] PHP Parse error:  syntax error, unexpected token "=" in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 44
+[27-Apr-2025 04:49:48 UTC] PHP Parse error:  syntax error, unexpected token "=" in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 48
+[27-Apr-2025 04:50:39 UTC] PHP Parse error:  syntax error, unexpected token "=" in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 48
+[27-Apr-2025 04:55:10 UTC] PHP Parse error:  syntax error, unexpected token "=" in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 48
+[27-Apr-2025 04:56:14 UTC] PHP Parse error:  syntax error, unexpected token "=" in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 48
+[27-Apr-2025 02:11:20 America/Mexico_City] PHP Warning:  file_put_contents(SIN_IMAGEN/deba91ee-682b-4413-aeb5-427e90fe9259.jpg): Failed to open stream: No such file or directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 12
+[27-Apr-2025 16:10:02 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined method Util::esFecha() in /home/og8coq8piwnp/public_html/api/services/reportes.php:145
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Reportes::consulta()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 145
+[27-Apr-2025 19:21:29 America/Mexico_City] PHP Warning:  Undefined variable $mysql in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 216
+[27-Apr-2025 19:21:29 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function executeReader() on null in /home/og8coq8piwnp/public_html/api/services/reportes.php:216
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Reportes::imagenes()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 216
+[27-Apr-2025 19:24:07 America/Mexico_City] PHP Warning:  Undefined variable $mysql in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 216
+[27-Apr-2025 19:24:07 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function executeReader() on null in /home/og8coq8piwnp/public_html/api/services/reportes.php:216
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Reportes::imagenes()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 216
+[04-May-2025 23:22:55 America/Mexico_City] PHP Warning:  Undefined array key 1 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 16
+[04-May-2025 23:22:55 America/Mexico_City] PHP Warning:  Undefined array key 2 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 17
+[04-May-2025 23:22:55 America/Mexico_City] PHP Warning:  Undefined array key 3 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 18
+[04-May-2025 23:22:59 America/Mexico_City] PHP Warning:  Undefined array key 1 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 16
+[04-May-2025 23:22:59 America/Mexico_City] PHP Warning:  Undefined array key 2 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 17
+[04-May-2025 23:22:59 America/Mexico_City] PHP Warning:  Undefined array key 3 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 18
+[04-May-2025 23:23:04 America/Mexico_City] PHP Warning:  Undefined array key 1 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 16
+[04-May-2025 23:23:04 America/Mexico_City] PHP Warning:  Undefined array key 2 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 17
+[04-May-2025 23:23:04 America/Mexico_City] PHP Warning:  Undefined array key 3 in /home/og8coq8piwnp/public_html/parameters/mysql.php on line 18
+[17-May-2025 00:59:50 America/Mexico_City] PHP Warning:  Undefined variable $mysql in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 120
+[17-May-2025 00:59:50 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function executeReader() on null in /home/og8coq8piwnp/public_html/api/services/usuarios.php:120
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/index.php(76): Usuarios::notificarAdminsForbidenLogout()
+#1 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/usuarios.php on line 120
+[17-May-2025 01:03:16 America/Mexico_City] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/og8coq8piwnp/public_html/api/services/firebase.php:92
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/services/firebase.php(24): Firebase::crearNotificacionMsg()
+#1 /home/og8coq8piwnp/public_html/api/services/firebase.php(19): Firebase::fcmSend()
+#2 /home/og8coq8piwnp/public_html/api/services/usuarios.php(137): Firebase::enviarNotificacionExternal()
+#3 /home/og8coq8piwnp/public_html/api/index.php(76): Usuarios::notificarAdminsForbidenLogout()
+#4 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/firebase.php on line 92
+[17-May-2025 01:05:52 America/Mexico_City] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/og8coq8piwnp/public_html/api/services/firebase.php:92
+Stack trace:
+#0 /home/og8coq8piwnp/public_html/api/services/firebase.php(24): Firebase::crearNotificacionMsg()
+#1 /home/og8coq8piwnp/public_html/api/services/firebase.php(19): Firebase::fcmSend()
+#2 /home/og8coq8piwnp/public_html/api/services/usuarios.php(137): Firebase::enviarNotificacionExternal()
+#3 /home/og8coq8piwnp/public_html/api/index.php(76): Usuarios::notificarAdminsForbidenLogout()
+#4 {main}
+  thrown in /home/og8coq8piwnp/public_html/api/services/firebase.php on line 92
+[30-May-2025 00:37:17 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[30-May-2025 00:37:22 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[30-May-2025 00:37:32 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[02-Jun-2025 11:29:14 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[05-Jun-2025 23:06:18 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:42:22 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:42:28 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:42:32 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:42:37 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:43:20 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:46:10 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:47:02 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:47:43 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:59:42 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:59:47 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:59:53 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 09:59:58 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 10:19:21 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 10:19:41 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[16-Jun-2025 10:29:14 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteEntrada in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 14
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteSalida in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 49
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteDanio in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 84
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteEntrada in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 14
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteSalida in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 49
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteDanio in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 84
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteEntrada in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 14
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteSalida in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 49
+[03-Nov-2025 23:01:14 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteDanio in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 84
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteEntrada in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 14
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteSalida in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 49
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteDanio in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 84
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteEntrada in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 14
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteSalida in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 49
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteDanio in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 84
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteEntrada in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 14
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteSalida in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 49
+[03-Nov-2025 23:04:45 America/Mexico_City] PHP Warning:  Undefined property: stdClass::$reporteDanio in /home/og8coq8piwnp/public_html/api/services/reportes.php on line 84
+[03-Feb-2026 18:15:44 America/Mexico_City] PHP Warning:  fopen(../logserror/6e52e3e4-40c1-4afc-875d-f731325e4006.txt): Failed to open stream: No such file or directory in /home/og8coq8piwnp/public_html/parameters/util.php on line 67
+[08-Feb-2026 19:55:41 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[08-Feb-2026 19:55:55 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[08-Feb-2026 19:57:17 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[08-Feb-2026 19:57:45 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[08-Feb-2026 20:00:31 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18
+[08-Feb-2026 20:01:20 America/Mexico_City] PHP Warning:  Attempt to read property "id_sistema" on array in /home/og8coq8piwnp/public_html/api/services/login.php on line 18

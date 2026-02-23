@@ -43,6 +43,16 @@
     switch($_SERVER['REQUEST_METHOD']) {
         case 'POST':
             $params = json_decode(file_get_contents('php://input'), true);
+            if(isset($_SERVER['CONTENT_TYPE'])) {
+                //die(strval($_SERVER['CONTENT_TYPE']));
+                //$t = strpos(strval($_SERVER['CONTENT_TYPE']), "multip/form-data;");
+                //die(json_encode($t));
+                if(strpos(strval($_SERVER['CONTENT_TYPE']), "multipart/form-data;") == 0) {
+                    die("oooraaaa");
+                } else {
+                    die("ijooole");
+                }
+            }
         break;
         case 'GET':
             $url_data = array();
