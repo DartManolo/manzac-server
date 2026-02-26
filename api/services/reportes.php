@@ -2,8 +2,6 @@
     Class Reportes {
         public static function alta($params) {
             try {
-                $nombre_archivox = Util::guid();
-                Util::crearArchivo("../logserror/$nombre_archivox.txt", json_encode($params));
                 Auth::verify();
                 $fecha = date('Y-m-d H:i:s');
                 $mysql = new Mysql();
@@ -45,8 +43,9 @@
                         $data_params->movimiento = $entrada->movimiento;
                         $data_params->observaciones = $entrada->observaciones;
                         $data_params->usuario = $entrada->usuario;
+                        $data_params->fhRegistro = $fecha;
                         $alta_entrada = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_ENTRADA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'$fecha')",
+                            "CALL STP_ALTA_REPORTE_ENTRADA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                             $data_params
                         );
                     } else if($reporte->reporteSalida != null) {
@@ -80,8 +79,9 @@
                         $data_params->licencia = $salida->licencia;
                         $data_params->observaciones = $salida->observaciones;
                         $data_params->usuario = $salida->usuario;
+                        $data_params->fhRegistro = $fecha;
                         $alta_salida = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_SALIDA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'$fecha')",
+                            "CALL STP_ALTA_REPORTE_SALIDA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                             $data_params
                         );
                     } else if($reporte->reporteDanio != null) {
@@ -131,8 +131,9 @@
                         $data_params->extFrisa = $danio->extFrisa;
                         $data_params->observaciones = $danio->observaciones;
                         $data_params->usuario = $danio->usuario;
+                        $data_params->fhRegistro = $fecha;
                         $alta_danios = $mysql->executeNonQuery(
-                            "CALL STP_ALTA_REPORTE_DANIOS(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'$fecha')",
+                            "CALL STP_ALTA_REPORTE_DANIOS(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                             $data_params
                         );
                     }
@@ -146,14 +147,7 @@
                         foreach($imagenes as $imagen_list) {
                             $imagen = (object)$imagen_list;
                             $img_folder_alta = $img_folder;
-                            if($imagen->base64 != "") {
-                                $nueva_imagen = new stdClass();
-                                $nueva_imagen->ruta = $img_folder;
-                                $nueva_imagen->nombre = $imagen->idImagen;
-                                $nueva_imagen->extension = $imagen->formato;
-                                $nueva_imagen->imagenBase64 = $imagen->base64;
-                                $alta_archivo_img = Util::guardarImagen($nueva_imagen);
-                            } else {
+                            if($imagen->imagen == "") {
                                 $img_folder_alta = "SIN_IMAGEN";
                             }
                             $data_params = new stdClass();
@@ -165,8 +159,9 @@
                             $data_params->tipo = $tipo;
                             $data_params->imgFolderAlta = $img_folder_alta;
                             $data_params->usuario = $imagen->usuario;
+                            $data_params->fhRegistro = $fecha;
                             $alta_imagen_reporte = $mysql->executeNonQuery(
-                                "CALL STP_ALTA_REPORTE_IMAGENES(?,?,?,?,?,?,?,?,'$fecha')",
+                                "CALL STP_ALTA_REPORTE_IMAGENES(?,?,?,?,?,?,?,?,?)",
                                 $data_params
                             );
                         }
@@ -179,21 +174,46 @@
             } catch(Error $e) {
                 Util::log($e);
                 return json_encode(false);
-            } finally {
-                $nombre_archivo = Util::guid();
-                Util::crearArchivo("../logserror/$nombre_archivo.txt", json_encode($params));
             }
         }
 
         public static function subirImagen($params) {
             try {
-                return json_encode($_FILES);
                 if (isset($_FILES['imagen'])) {
-                    $nombreArchivo = basename($_FILES['imagen']['name']);
-                    return json_encode($nombreArchivo);
+                    $nombre = basename($_FILES['imagen']['name']);
+                    $folder = basename($_POST['tipo']);
+                    $extension = basename($_POST['formato']);
+                    $ruta_destino = "../media/".$folder."/".$nombre.".".$extension;
+                    move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino);
+                    return json_encode(true);
                 } else {
-                    return "FALSE";
+                    return json_encode(false);
                 }
+            } catch(Exception $e) {
+                Util::log($e);
+                return json_encode(false);
+            } catch(Error $e) {
+                Util::log($e);
+                return json_encode(false);
+            }
+        }
+
+        public static function reporteReestablecer($params) {
+            try {
+                if(!isset($params[0]) || count($params) == 0 || !is_array($params)) {
+                    http_response_code(406);
+                    die("Parámetros de consulta incorrectos");
+                }
+                $mysql = new Mysql();
+                foreach($params as $id_tarja) {
+                    $data_params = new stdClass();
+                    $data_params->idTarja = $id_tarja;
+                    $restablecer_imgs = $mysql->executeNonQuery(
+                        "CALL STP_RESTABLECER_REPORTE_GLOBAL(?)",
+                        $data_params
+                    );
+                }
+                return json_encode(true);
             } catch(Exception $e) {
                 Util::log($e);
                 return json_encode(false);

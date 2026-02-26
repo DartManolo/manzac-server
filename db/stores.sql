@@ -843,6 +843,31 @@ END $$
 DELIMITER ;
 
 
+
+/* ------------------------------------------------------------------------------------*/
+DROP PROCEDURE IF EXISTS STP_RESTABLECER_REPORTE_GLOBAL;
+DELIMITER $$
+CREATE PROCEDURE STP_RESTABLECER_REPORTE_GLOBAL(
+    IN _IDTARJA VARCHAR(120)
+)
+BEGIN
+    DELETE FROM 
+        manzac.reportes_entradas 
+    WHERE id_tarja = _IDTARJA;
+    DELETE FROM 
+        manzac.reportes_salidas 
+    WHERE id_tarja = _IDTARJA;
+    DELETE FROM 
+        manzac.reportes_danios 
+    WHERE id_tarja = _IDTARJA;
+    DELETE FROM 
+        manzac.reportes_imagenes 
+    WHERE id_tarja = _IDTARJA;
+END $$
+DELIMITER ;
+
+
+
 /* ------------------------------------------------------------------------------------*/
 DROP PROCEDURE IF EXISTS STP_ALTA_REPORTE_IMAGENES;
 DELIMITER $$

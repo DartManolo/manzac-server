@@ -215,4 +215,9 @@ INSERT INTO usuarios (
 SET SQL_SAFE_UPDATES = 0;
 
 827ccb0eea8a706c4c34a16891f84e7b
+
+truncate table reportes_salidas;
+truncate table reportes_entradas;
+truncate table reportes_danios;
+truncate table reportes_imagenes;
 */

@@ -13,8 +13,8 @@
             $this->conn->options(MYSQLI_SET_CHARSET_NAME, "utf8");
             $this->conn->real_connect(
                 $mysql_params[0],
-                'root',
-                'root',
+                $mysql_params[1],
+                $mysql_params[2],
                 $mysql_params[3]
             );
         }
